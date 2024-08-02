@@ -1,6 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+      "config:recommended"
+  ],
+  "prHourlyLimit": 0,
+  "git-submodules": {
+      "enabled": true
+  },
+  "customManagers": [
+      {
+          "customType": "regex",
+          "fileMatch": [
+              "(^|/)Dockerfile$",
+              "(^|/)Dockerfile\\.[^/]*$"
+          ],
+          "matchStrings": [
+              "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s(ARG|ENV) .*?_VERSION=(?<currentValue>.*)\\s"
+          ],
+          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+          "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+\\.\\d+(-\\d+)?)"
+      }
+  ],
+  "customDatasources": {
+      "flightradar24": {
+          "defaultRegistryUrlTemplate": "https://s3.dualstack.us-east-1.amazonaws.com/repo.feed.flightradar24.com/fr24feed_versions.json",
+          "transformTemplates": [
+              "{\"releases\":[{\"version\": $.platform.linux_arm64_tgz.version}]}"
+          ]
+      }
+  },
+  "logLevelRemap": [
+    {
+      "matchMessage": "/^Custom manager fetcher/",
+      "newLogLevel": "info"
+    }
   ]
 }
