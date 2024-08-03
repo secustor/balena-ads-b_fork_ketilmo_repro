@@ -1,6 +1,6 @@
 # 30425
 
-Reproduction for [Renovate discussion 30425]ttps://github.com/renovatebot/renovate/discussions/30425).
+Reproduction for [Renovate discussion 30425](https://github.com/renovatebot/renovate/discussions/30425).
 
 ## Current behavior
 
