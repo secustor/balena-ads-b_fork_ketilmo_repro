@@ -16,9 +16,7 @@
           ],
           "matchStrings": [
               "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s(ARG|ENV) .*?_VERSION=(?<currentValue>.*)\\s"
-          ],
-          "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-          "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+\\.\\d+(-\\d+)?)"
+          ]
       }
   ],
   "customDatasources": {
